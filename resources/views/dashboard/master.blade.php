@@ -10,6 +10,10 @@
     {{-- <header>
         Header 2
     </header> --}}
+    @session('status')
+    {{$value}}
+
+    @endsession
 
     @yield('content')
 

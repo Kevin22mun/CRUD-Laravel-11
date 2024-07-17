@@ -30,7 +30,7 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         Post::create($request->validated());
-        return to_route('post.index');
+        return to_route('post.index')->with('status','Post created');
 
     }
 
@@ -40,15 +40,11 @@ class PostController extends Controller
     }
 
     public function edit(Post $post)
-
     {
         $categories= Category::pluck('id','title');
         return view('dashboard.post.edit',compact('categories','post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(PutRequest $request, Post $post)
     {
         $data = $request->validated();
@@ -58,16 +54,12 @@ class PostController extends Controller
             $request->image->move(public_path('uploads/post'),$filename);
         }
         $post->update($data);
-        return to_route('post.index');
+        return to_route('post.index')->with('status','Post updated');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Post $post)
     {
         $post->delete();
-        return to_route('post.index');
+        return to_route('post.index')->with('status','Post delete');
 
     }
 }
