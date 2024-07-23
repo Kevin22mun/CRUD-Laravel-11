@@ -29,18 +29,7 @@
 
             <!-- Page Content -->
             <main>
-
-                @session('status')
-                <div class="card card-success">
-                    {{$value}}
-                </div>
-                @endsession
-                <div class="container mx-auto ">
-                    <div class="card card-white">
-                    @yield('content')
-                    </div>
-                </div>
-
+                {{ $slot }}
             </main>
         </div>
     </body>

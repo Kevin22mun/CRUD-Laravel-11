@@ -1,39 +1,36 @@
 @extends('dashboard.master')
 
 @section('content')
-<a class="btn" href="{{route('post.create')}}">Create</a>
-  <table class="table">
+
+<a class="btn" href="{{route('category.create')}}">Create</a>
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Posted</th>
-            <th>Category</th>
+            <th>Slug</th>
             <th>Options</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($posts as $p)
+        @foreach ($categories as $c)
         <tr>
             <td>
-                {{$p->id}}
+                {{$c->id}}
             </td>
             <td>
-                {{$p->title}}
+                {{$c->title}}
             </td>
 
             <td>
-                {{$p->posted}}
+                {{$c->slug}}
             </td>
 
-            <td>
-                {{$p->category->title}}
-            </td>
             <td>
                 <div class="flex justify-center items-center space-x-2">
-                    <a class="btn btn-warning" href="{{route('post.edit',$p->id)}}">Edit</a>
-                    <a class="btn btn-show" href="{{route('post.show',$p->id)}}">Show</a>
-                    <form action="{{route('post.destroy',$p)}}" method="post">
+                    <a class="btn btn-warning" href="{{route('category.edit',$c->id)}}">Edit</a>
+                    <a class="btn btn-show" href="{{route('category.show',$c->id)}}">Show</a>
+                    <form action="{{route('category.destroy',$c)}}" method="post">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit">Delete</button>
@@ -45,7 +42,7 @@
     </tbody>
   </table>
   <div class="pagination">
-    {{$posts->links()}}
+    {{$categories->links()}}
   </div>
 
 @endsection

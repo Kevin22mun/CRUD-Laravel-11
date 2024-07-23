@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
     $categories = Category::paginate(2);
-    return view('dashboard..category.category_index',compact('categories'));
+    return view('dashboard.category.index',compact('categories'));
     }
 
     public function create()
